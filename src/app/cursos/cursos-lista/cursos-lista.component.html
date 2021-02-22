@@ -12,7 +12,10 @@
   </div>
   <div class="card">
     <div class="card-body">
-      <table class="table table-hover" *ngIf="cursos$ | async as cursos">
+      <table
+        class="table table-hover"
+        *ngIf="cursos$ | async as cursos; else loading"
+      >
         <thead>
           <tr>
             <th>#</th>
@@ -26,7 +29,7 @@
             <td>{{ curso.nome }}</td>
             <td>
               <span class="float-right">
-                <button class="btn btn-outline-warning mb-1 btn-sm">
+                <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdit(curso.id)">
                   Atualizar
                 </button>
 
@@ -42,11 +45,11 @@
       <!-- <ng-template #loadingError>
         <div *ngIf="error$ | async; else loading">
           <span>Erro ao carregar cursos. Tente novamente mais tarde.</span>
-        </div>
-        <ng-template #loading>
-          <span>Carregando cursos...</span>
-        </ng-template>
-      </ng-template> -->
+         </div> -->
+      <ng-template #loading>
+        <span>Carregando cursos...</span>
+      </ng-template>
+      <!-- </ng-template> -->
     </div>
   </div>
 </div>

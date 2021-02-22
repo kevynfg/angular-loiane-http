@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-header">
+    <div class="float-left">Cursos</div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" [routerLink]="['novo']">
+        Novo Curso
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onRefresh()">
+        Atualizar
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-hover" *ngIf="cursos$ | async as cursos">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Curso</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curso of cursos">
+            <td>{{ curso.id }}</td>
+            <td>{{ curso.nome }}</td>
+            <td>
+              <span class="float-right">
+                <button class="btn btn-outline-warning mb-1 btn-sm">
+                  Atualizar
+                </button>
+
+                <button class="btn btn-outline-danger mb-1 btn-sm">
+                  Remover
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- <ng-template #loadingError>
+        <div *ngIf="error$ | async; else loading">
+          <span>Erro ao carregar cursos. Tente novamente mais tarde.</span>
+        </div>
+        <ng-template #loading>
+          <span>Carregando cursos...</span>
+        </ng-template>
+      </ng-template> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div style="margin-top: 10px">
+  <div class="mb-3">
+    <label
+      for="formFile"
+      id="customFileLabel"
+      class="form-label"
+      style="margin-bottom: 15px"
+      >Selecionar arquivo</label
+    >
+    <input
+      class="form-control"
+      style="padding: 4px"
+      type="file"
+      id="formFile"
+      (change)="onChange($event)"
+      multiple
+    />
+  </div>
+</div>

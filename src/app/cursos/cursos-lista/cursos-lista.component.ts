@@ -46,7 +46,7 @@ export class CursosListaComponent implements OnInit {
         console.error(error);
         // this.error$.next(true);
         this.handleError();
-        return empty();
+        return EMPTY;
       })
     );
 

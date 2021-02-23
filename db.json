@@ -17,20 +17,8 @@
       "id": 4
     },
     {
-      "nome": "PHP",
-      "id": 5
-    },
-    {
-      "id": 6,
-      "nome": "MongoDB"
-    },
-    {
-      "id": 7,
-      "nome": "Ruby"
-    },
-    {
-      "id": 8,
-      "nome": "Elixir"
+      "id": 5,
+      "nome": "sada"
     }
   ]
 }

@@ -36,17 +36,22 @@ export class CursosFormComponent implements OnInit {
     //   });
     // });
 
-    this.route.params
-      .pipe(
-        map((params: any) => params.id),
-        switchMap((id) => this.service.loadById(id))
-      )
-      .subscribe((curso: any) => this.updateForm(curso));
+    // this.route.params
+    //   .pipe(
+    //     map((params: any) => params.id),
+    //     switchMap((id) => this.service.loadById(id))
+    //   )
+    //   .subscribe((curso: any) => this.updateForm(curso));
 
+    // Esta lógica, o resolver busca na rota um id e busca os dados desse ID
+    // Caso não ache nada, ele retorna null para o form que inicalmente deve
+    // Se iniciar com null.
+    const curso = this.route.snapshot.data['curso'];
+    console.log('curso ', curso);
     this.form = this.formBuilder.group({
-      id: [null],
+      id: [curso.id],
       nome: [
-        null,
+        curso.nome,
         [
           Validators.required,
           Validators.minLength(3),
@@ -57,12 +62,12 @@ export class CursosFormComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  updateForm(curso: any) {
-    this.form.patchValue({
-      id: curso.id,
-      nome: curso.nome,
-    });
-  }
+  // updateForm(curso: any) {
+  //   this.form.patchValue({
+  //     id: curso.id,
+  //     nome: curso.nome,
+  //   });
+  // }
 
   hasError(field: string) {
     // tslint:disable-next-line: no-unused-expression
@@ -71,17 +76,52 @@ export class CursosFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+
     if (this.form.valid) {
       console.log('Form enviado.');
-      this.service.create(this.form.value).subscribe(
+
+      let msgSuccess = 'Curso criado com sucesso!';
+      let msgError = 'Erro ao completar o registro.';
+
+      if (this.form.value.id) {
+        msgSuccess = 'Curso atualizado com sucesso!';
+        msgError = 'Erro ao atualizar o curso, tente novamente!';
+      }
+
+      this.service.save(this.form.value).subscribe(
         (success) => {
-          this.modal.showAlertSuccess('Criado com sucesso!');
+          this.modal.showAlertSuccess(msgSuccess);
           // Volta para a rota anterior antes de chegar nesta rota
           this.location.back();
         },
-        (error) => this.modal.showAlertDanger('Erro ao completar o registro.'),
-        () => console.log('Request completo!')
+        (error) => {
+          this.modal.showAlertDanger(msgError);
+        },
+        () => console.log('Request completo')
       );
+
+      // if (this.form.value.id) {
+      //   this.service.update(this.form.value).subscribe(
+      //     (success) => {
+      //       this.modal.showAlertSuccess('Curso criado com sucesso!');
+      //       // Volta para a rota anterior antes de chegar nesta rota
+      //       this.location.back();
+      //     },
+      //     (error) => this.modal.showAlertDanger('Erro ao atualizar curso.'),
+      //     () => console.log('Update completo!')
+      //   );
+      // } else {
+      //   this.service.create(this.form.value).subscribe(
+      //     (success) => {
+      //       this.modal.showAlertSuccess('Criado com sucesso!');
+      //       // Volta para a rota anterior antes de chegar nesta rota
+      //       this.location.back();
+      //     },
+      //     (error) =>
+      //       this.modal.showAlertDanger('Erro ao completar o registro.'),
+      //     () => console.log('Request completo!')
+      //   );
+      // }
     }
   }
 

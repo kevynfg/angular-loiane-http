@@ -19,12 +19,23 @@ export class CursosService {
   }
 
   // tslint:disable-next-line: typedef
-  create(curso: object) {
+  private create(curso: object) {
     return this.http.post(this.API, curso).pipe(take(1));
   }
 
   // tslint:disable-next-line: typedef
   loadById(id: number) {
-    return this.http.get(`${this.API}/${id}`).pipe(take(1));
+    return this.http.get<Curso>(`${this.API}/${id}`).pipe(take(1));
+  }
+
+  private update(curso: any) {
+    return this.http.put(`${this.API}/${curso.id}`, curso).pipe(take(1));
+  }
+
+  save(curso: any) {
+    if (curso.id) {
+      return this.update(curso);
+    }
+    return this.create(curso);
   }
 }

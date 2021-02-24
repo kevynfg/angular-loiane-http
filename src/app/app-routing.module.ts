@@ -1,3 +1,4 @@
+import { ReactiveSearchModule } from './reactive-search/reactive-search.module';
 import { UnsubscribeRxjsModule } from './unsubscribe-rxjs/unsubscribe-rxjs.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -21,6 +22,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./unsubscribe-rxjs/unsubscribe-rxjs.module').then(
         (m) => m.UnsubscribeRxjsModule
+      ),
+  },
+  {
+    path: 'busca-reativa',
+    loadChildren: () =>
+      import('./reactive-search/reactive-search.module').then(
+        (m) => m.ReactiveSearchModule
       ),
   },
 ];

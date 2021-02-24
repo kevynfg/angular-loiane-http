@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component, Input, OnInit } from '@angular/core';
 import { UploadService } from '../upload.service';
 
@@ -33,7 +34,7 @@ export class UploadFileComponent implements OnInit {
   onUpload() {
     if (this.inputFile && this.inputFile.size > 0) {
       this.fileService
-        .upload(this.inputFile, 'http://localhost:8000/upload')
+        .upload(this.inputFile, environment.BASE_URL + '/upload')
         .subscribe((response) => console.log('Upload Concluído.'));
     }
   }

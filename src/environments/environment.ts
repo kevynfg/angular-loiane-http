@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  API: 'http://localhost:3000/',
+  API2: 'http://localhost:3000/',
   BASE_URL: '/api',
-  API2: 'http://localhost:8000/upload',
+  API: 'http://localhost:8000/',
 };
 
 /*

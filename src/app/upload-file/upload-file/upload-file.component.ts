@@ -62,5 +62,21 @@ export class UploadFileComponent implements OnInit {
     }
   }
 
+  onDownloadExcel() {
+    this.fileService
+      .download(environment.BASE_URL + '/downloadExcel')
+      .subscribe((res: any) => {
+        this.fileService.handleFile(res, 'report.xlsx');
+      });
+  }
+
+  onDownloadPDF() {
+    this.fileService
+      .download(environment.BASE_URL + '/downloadPDF')
+      .subscribe((res: any) => {
+        this.fileService.handleFile(res, 'report.pdf');
+      });
+  }
+
   ngOnDestroy() {}
 }

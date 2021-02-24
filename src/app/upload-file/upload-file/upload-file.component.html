@@ -21,7 +21,7 @@
         role="progressbar"
         [style.width]="progress + '%'"
       >
-        {{ progress }}
+        {{ progress }}%
       </div>
     </div>
   </div>
@@ -34,4 +34,22 @@
   >
     Enviar
   </button>
+  <div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      id="fileButton"
+      (click)="onDownloadExcel()"
+    >
+      Download Excel
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      id="fileButton"
+      (click)="onDownloadPDF()"
+    >
+      Download PDF
+    </button>
+  </div>
 </div>

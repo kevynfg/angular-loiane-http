@@ -1,6 +1,6 @@
 import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Event } from '@angular/router';
-import { pipe } from 'rxjs';
+import { pipe, Observable } from 'rxjs';
 import { filter, map, pluck, tap } from 'rxjs/operators';
 
 // tslint:disable-next-line: typedef

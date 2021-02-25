@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "angular-loiane-curso"
+  },
+  "targets": {
+    "angular-loiane-curso": {
+      "hosting": {
+        "requests-http": [
+          "angular-loiane-curso"
+        ]
+      }
+    }
   }
 }
